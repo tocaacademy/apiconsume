@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState,useEffect} from 'react'
 
 function App() {
+  const [pokemon, setPokemon] = useState(null)
+
+  useEffect(()=>{
+    fetch("https://pokeapi.co/api/v2/pokemon/bulbasaur")
+    .then(res=>res.json())
+    .then(res=>setPokemon(res.res))
+  },[])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {(pokemon!=null)?
+      (
+              <div className="container">
+                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}/>
+                <h1>{pokemon.name} ({pokemon.id})</h1>
+
+              </div>
+        ):(<h1>Cargando...</h1>)
+      }
+    </>
   );
 }
 
