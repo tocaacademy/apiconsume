@@ -3,9 +3,10 @@ import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
+import EpisodesModal from '../Episodes/modal';
 
 const Character = (props) => {
-  const {name, image, species, gender, created, location} = props.character
+  const {name, image, species, gender, created, location, episode} = props.character
   return (
     <div style={{width:"350px"}}>
       <Card>
@@ -22,7 +23,9 @@ const Character = (props) => {
                   Especie: {species} <br/>
                   Ubicación: {location.name}
                   </CardText>
-          <Button>Ver Episodios</Button>
+
+          <EpisodesModal episodes={episode} 
+                          buttonLabel="Ver Episodios"/>
         </CardBody>
       </Card>
     </div>

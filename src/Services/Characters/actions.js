@@ -12,3 +12,11 @@ export const getCharacter= async(id)=>{
 
     return character.data
 }
+
+
+export const getEpisodes= async(ids)=>{
+    const episodes = await axios
+                            .get(`https://rickandmortyapi.com/api/episode/${ids}`)
+
+    return episodes.data
+}
